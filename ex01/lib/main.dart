@@ -4,8 +4,25 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String _displayText = 'A Simple Text'; // 1. Define variable to hold text
+
+  void _changeText() {
+    setState(() {
+      if (_displayText == 'A Simple Text') {
+        _displayText = 'Hello World!';
+      } else {
+        _displayText = 'A Simple Text';
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +38,10 @@ class MyApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 padding: EdgeInsets.all(5),
-                child: Text('A Simple Text', style: TextStyle(fontSize: 30)),
+                child: Text(_displayText, style: TextStyle(fontSize: 30)),
               ),
               ElevatedButton(
-                onPressed: () {print("Button Pressed");},
+                onPressed: _changeText,
                 child: Text(
                   'Click Me',
                   style: TextStyle(fontSize: 10, color: Colors.green),
