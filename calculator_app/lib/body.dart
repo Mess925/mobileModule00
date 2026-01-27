@@ -12,7 +12,7 @@ class _CalculateBodyState extends State<CalculateBody> {
   String expression = '';
   String result = '0';
 
-  void ButtonOnPress(String buttonText) {
+  void buttonOnPress(String buttonText) {
     setState(() {
       if (buttonText == 'AC') {
         expression = '';
@@ -56,7 +56,7 @@ class _CalculateBodyState extends State<CalculateBody> {
             double offsetFromLeft = buttonWidth / 2;
             return TextButton(
               style: TextButton.styleFrom(padding: EdgeInsets.zero),
-              onPressed: () => ButtonOnPress(text),
+              onPressed: () => buttonOnPress(text),
               child: Container(
                 width: constraints.maxWidth,
                 alignment: Alignment.centerLeft,
@@ -70,7 +70,7 @@ class _CalculateBodyState extends State<CalculateBody> {
     } else {
       return Expanded(
         child: TextButton(
-          onPressed: () => ButtonOnPress(text),
+          onPressed: () => buttonOnPress(text),
           child: Text(text, style: TextStyle(fontSize: 20, color: color)),
         ),
       );
