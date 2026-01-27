@@ -137,8 +137,9 @@ class _CalculateBodyState extends State<CalculateBody> {
           flex: 1,
           child: Column(
             children: [
+              Spacer(),
               Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.bottomRight,
                 child: Text(
                   expression.isEmpty ? '0' : expression,
                   style: const TextStyle(fontSize: 24, color: Colors.black54),
@@ -147,7 +148,7 @@ class _CalculateBodyState extends State<CalculateBody> {
               ),
               // Result display
               Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.bottomRight,
                 child: Text(
                   result,
                   style: const TextStyle(
@@ -162,10 +163,9 @@ class _CalculateBodyState extends State<CalculateBody> {
           ),
         ),
         Container(height: 2, color: Colors.black),
-        Container(
+        Expanded(flex: 1, child: Container(
           color: Colors.blueGrey.shade400,
-          child: Expanded(flex: 1, child: keyPad()),
-        ),
+          child: keyPad())),
       ],
     );
   }
