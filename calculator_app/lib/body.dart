@@ -79,50 +79,52 @@ class _CalculateBodyState extends State<CalculateBody> {
 
   Widget keyPad() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Flex(
-          direction: Axis.horizontal,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            calcButton('7'),
-            calcButton('8'),
-            calcButton('9'),
-            calcButton('C', color: Colors.red),
-            calcButton('AC', color: Colors.red),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              calcButton('7'),
+              calcButton('8'),
+              calcButton('9'),
+              calcButton('C', color: Colors.red),
+              calcButton('AC', color: Colors.red),
+            ],
+          ),
         ),
-        Flex(
-          direction: Axis.horizontal,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            calcButton('4'),
-            calcButton('5'),
-            calcButton('6'),
-            calcButton('+', color: Colors.white),
-            calcButton('-', color: Colors.white),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              calcButton('4'),
+              calcButton('5'),
+              calcButton('6'),
+              calcButton('+', color: Colors.white),
+              calcButton('-', color: Colors.white),
+            ],
+          ),
         ),
-        Flex(
-          direction: Axis.horizontal,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            calcButton('1'),
-            calcButton('2'),
-            calcButton('3'),
-            calcButton('*', color: Colors.white),
-            calcButton('/', color: Colors.white),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              calcButton('1'),
+              calcButton('2'),
+              calcButton('3'),
+              calcButton('*', color: Colors.white),
+              calcButton('/', color: Colors.white),
+            ],
+          ),
         ),
-        Flex(
-          direction: Axis.horizontal,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            calcButton('0'),
-            calcButton('.'),
-            calcButton('00'),
-            calcButton('=', color: Colors.white),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              calcButton('0'),
+              calcButton('.'),
+              calcButton('00'),
+              calcButton(
+                '=',
+                color: Colors.white,
+              ), // your calcButton already makes it wider
+            ],
+          ),
         ),
       ],
     );
@@ -140,32 +142,38 @@ class _CalculateBodyState extends State<CalculateBody> {
               Spacer(),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Text(
-                  expression.isEmpty ? '0' : expression,
-                  style: const TextStyle(fontSize: 24, color: Colors.black54),
-                  textAlign: TextAlign.right,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  reverse: true,
+                  child: Text(
+                    expression.isEmpty ? '0' : expression,
+                    style: const TextStyle(fontSize: 24, color: Colors.black54),
+                  ),
                 ),
               ),
-              // Result display
               Align(
                 alignment: Alignment.bottomRight,
-                child: Text(
-                  result,
-                  style: const TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  reverse: true,
+                  child: Text(
+                    result,
+                    style: const TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
-                  textAlign: TextAlign.right,
                 ),
               ),
             ],
           ),
         ),
         Container(height: 2, color: Colors.black),
-        Expanded(flex: 1, child: Container(
-          color: Colors.blueGrey.shade400,
-          child: keyPad())),
+        Expanded(
+          flex: 1,
+          child: Container(color: Colors.blueGrey.shade400, child: keyPad()),
+        ),
       ],
     );
   }

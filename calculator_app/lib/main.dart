@@ -26,7 +26,13 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blueGrey.shade400,
         ),
         backgroundColor: Colors.blueGrey.shade700,
-        body: CalculateBody(),
+        body: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return CalculateBody();
+            },
+          ),
+        ),
       ),
     );
   }
