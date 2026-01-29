@@ -33,10 +33,9 @@ class _CalculateBodyState extends State<CalculateBody> {
     try {
       ShuntingYardParser parser = ShuntingYardParser();
       Expression exp = parser.parse(expression);
-      ContextModel cm = ContextModel();
-      double eval = exp.evaluate(EvaluationType.REAL, cm);
+      final evaluator = RealEvaluator();
+      num eval = evaluator.evaluate(exp);
 
-      // Format result: remove .0 for whole numbers
       result = eval.toString();
       if (eval == eval.toInt()) {
         result = eval.toInt().toString();
